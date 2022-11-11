@@ -1,3 +1,20 @@
 html {
     background-color: antiquewhite;
 }
+
+h1 {
+    color: brown;
+}
+
+footer {
+    font-size: small;
+}
+
+p {
+    color: gold
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+}
