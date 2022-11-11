@@ -68,6 +68,4 @@ function createConnectionObject() {
 
     return $mysqlObj;
 }
-
-
 ?>
