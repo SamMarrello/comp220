@@ -12,11 +12,14 @@ function drawEditDropDown() {
 }
 
 function drawMenu() {
-    echo "<select id=\"menu\" name=\"menu\">";
+
+    echo "<form action=\"?\" type=\"post\">";
+    echo "<div class=\"menu\">";
     drawEditDropDown();
     drawFileDropDown();
     //drawFontDropDown();
-    echo "</select>";
+    echo "</div>";
+    echo "</form>";
 
     DisplayLabel("Write your text here!");
     DisplayTextbox("textarea", "body", 500, "Start writing here");
