@@ -1,0 +1,17 @@
+function SetFont()
+{
+    // Getting chosen font from the drop down box when its selected
+    var chosenFont = document.getElementById("fonts").value;
+    // Changes text to be in the chosen font
+    // NOTE: CHANGE textbox ID
+    document.getElementById("test").style.fontFamily = chosenFont;
+}
+
+function SetSize()
+{
+    // Getting chosen font size from the drop down box when its selected
+    var chosenSize = document.getElementById("sizes").value;
+    // Changes text size to be in the chosen size
+    // NOTE: CHANGE textbox ID
+    document.getElementById("test").style.fontSize = chosenSize;
+}

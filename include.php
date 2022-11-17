@@ -8,6 +8,7 @@ function WriteHeaders($Heading = "", $Titlebar = "") {
             <meta charset = \"UTF-8\">
             <title>$Titlebar</title>
             <link rel=\"stylesheet\" type = \"text/css\" href=\"style.css\">
+            <script src =\"script.js\"></script>
         </head>
     <body>
     <h1>$Heading   

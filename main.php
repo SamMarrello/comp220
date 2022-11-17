@@ -11,13 +11,46 @@ function drawEditDropDown() {
     
 }
 
-function drawMenu() {
+function drawFontDropDown($mysqlObj)
+{
+    // Prepare SQL statement
+    $TableName = "fontNames";
+    $query = "Select * from $TableName";
+    $stmtObj = $mysqlObj->prepare($query);
+
+    // Binds then executes sql statement
+    $BindSuccess = $stmtObj->bind_result($font);
+    if ($BindSuccess)
+        $success = $stmtObj->execute();
+    else
+        echo "Bind failed: " . $stmtObj->error;
+
+    // Create dropdown box, on change calls js function "SetFont"
+    echo "<select id = \"fonts\" onChange = \"SetFont()\">";
+
+    // Fetch gets all fonts and adds them as options in the drop down box
+    while ($stmtObj->fetch())
+        echo "<option value = \"$font\">$font</option>";
+    echo "</select>";
+
+    // Dropdown box for font size, on change calls js function "SetSize
+    echo "<select id = \"sizes\" size = \"3\" onChange = \"SetSize()\">
+        <option value = \"small\">Small</option>
+        <option value = \"medium\">Medium</option>
+        <option value = \"large\">Large</option>
+        </select>";
+    
+    // Testing purposes only, remove later.
+    echo "<br><input type = input name = \"goop\" Size = 30 value = \"Testing\" id = \"test\">";
+}
+
+function drawMenu($mysqlObj) {
 
     echo "<form action=\"?\" type=\"post\">";
     echo "<div class=\"menu\">";
     drawEditDropDown();
     drawFileDropDown();
-    //drawFontDropDown();
+    drawFontDropDown($mysqlObj);
     echo "</div>";
     echo "</form>";
 
