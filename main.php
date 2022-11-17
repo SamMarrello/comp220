@@ -17,6 +17,9 @@ function drawMenu() {
     drawFileDropDown();
     //drawFontDropDown();
     echo "</select>";
+
+    DisplayLabel("Write your text here!");
+    DisplayTextbox("textarea", "body", 500, "Start writing here");
 }
 
 //save and open file functions
@@ -25,13 +28,15 @@ function saveFile($body) {
     try {
 
         $fs = fopen("editor.dat", "w");
-        $outcome = fwrite($fs, $body);
         $exists = file_exists($fs);
 
         if (!$exists) {
             throw new Exception("Editor.dat does not exist", 22);
         }
-        else if (!$fs || !$outcome) {
+
+        $outcome = fwrite($fs, $body);
+        
+        if (!$outcome) {
             throw new Exception("Error Saving file", 25);
         }
         else {
@@ -53,13 +58,15 @@ function openFile() {
     try {
 
         $fs = fopen("editor.dat", "r");
-        $body = trim(fread($fs, 500));
         $exists = file_exists($fs);
 
         if (!$exists) {
             throw new Exception("Editor.dat does not exist", 22);
         }
-        else if (!$fs || !$body) {
+
+        $body = trim(fread($fs, 500));
+    
+        if (!$body) {
             throw new Exception("Error opening file", 25);
         }
         else {
