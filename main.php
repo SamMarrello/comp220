@@ -6,11 +6,11 @@ require_once("include.php");
 function drawFileDropDown() {
     echo "<form action=? method=post";
     echo "<select id=\"file\" size=\"2\">
-          <option value=\"new\">New</option>
-          <option value=\"open\">Open</option>
-          <option value=\"save\">Save</option>
-          </select>";
-    echo "</form>";
+          <option value=\"new\">"; DisplayButton("new", "New"); echo "</option>";
+          echo "<option value=\"open\">"; DisplayButton("open", "Open"); echo "</option>";
+          echo "<option value=\"save\">"; DisplayButton("save", "Save"); echo "</option>";
+          echo "</select>";
+        echo "</form>";
 }
 
 function drawEditDropDown() {
