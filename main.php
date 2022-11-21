@@ -4,23 +4,19 @@ require_once("include.php");
 //gui functions
 
 function drawFileDropDown() {
-    echo "<form action=? method=post";
     echo "<select id=\"file\" size=\"2\">
-          <option value=\"new\">"; DisplayButton("new", "New"); echo "</option>";
-          echo "<option value=\"open\">"; DisplayButton("open", "Open"); echo "</option>";
-          echo "<option value=\"save\">"; DisplayButton("save", "Save"); echo "</option>";
-          echo "</select>";
-        echo "</form>";
+        <option value=\"new\">"; DisplayButton("new", "New"); echo "</option>";
+        echo "<option value=\"open\">"; DisplayButton("open", "Open"); echo "</option>";
+        echo "<option value=\"save\">"; DisplayButton("save", "Save"); echo "</option>";
+        echo "</select>";
 }
 
 function drawEditDropDown() {
-    echo "<form action=? method=post";
     DisplayLabel("Find");
     DisplayTextbox("text", "search", 55, "Search");
     DisplayLabel("Case sensitive?");
     DisplayTextbox("checkbox", "caseSensitive", 55, "Case Sensitive");
     DisplayButton("edit", "Done");
-    echo "</form>";
 }
 
 function drawFontDropDown($mysqlObj)
@@ -59,7 +55,7 @@ function drawFontDropDown($mysqlObj)
 function drawMenu($mysqlObj) {
 
 
-    echo "<form action=\"?\" type=\"post\">";
+    echo "<form action=? type=post>";
     echo "<div class=\"menu\">";
     drawEditDropDown();
     drawFileDropDown();
