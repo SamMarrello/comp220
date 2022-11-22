@@ -4,7 +4,7 @@ function SetFont()
     let chosenFont = document.getElementById("fonts").value;
     // Changes text to be in the chosen font
     // NOTE: CHANGE textbox ID
-    document.getElementById("test").style.fontFamily = chosenFont;
+    document.getElementById("body").style.fontFamily = chosenFont;
 }
 
 function SetSize()
@@ -13,5 +13,5 @@ function SetSize()
     let chosenSize = document.getElementById("sizes").value;
     // Changes text size to be in the chosen size
     // NOTE: CHANGE textbox ID
-    document.getElementById("test").style.fontSize = chosenSize;
+    document.getElementById("body").style.fontSize = chosenSize;
 }

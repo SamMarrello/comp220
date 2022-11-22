@@ -4,11 +4,17 @@ require_once("include.php");
 //gui functions
 
 function drawFileDropDown() {
-    echo "<select id=\"file\" size=\"2\">
-        <option value=\"new\">"; DisplayButton("new", "New"); echo "</option>";
-        echo "<option value=\"open\">"; DisplayButton("open", "Open"); echo "</option>";
-        echo "<option value=\"save\">"; DisplayButton("save", "Save"); echo "</option>";
-        echo "</select>";
+    echo "<select name=\"edit\" id=\"edit\"";
+    echo "<option value=\"new\">"; 
+    DisplayButton("new", "New");
+    echo "</option>";
+    echo "<option value=\"save\">"; 
+    DisplayButton("save", "Save");
+    echo "</option>";
+    echo "<option value=\"open\">"; 
+    DisplayButton("open", "Open");
+    echo "</option>";
+    echo "</select>";
 }
 
 function drawEditDropDown() {
@@ -52,8 +58,11 @@ function drawFontDropDown($mysqlObj)
     echo "<br><input type = input name = \"goop\" Size = 30 value = \"Testing\" id = \"test\">";
 }
 
-function drawMenu($mysqlObj) {
+function drawMenu($mysqlObj, $body = "") {
 
+    if (!isset($body)) {
+        $body = "Enter your text here";
+    }
 
     echo "<form action=? type=post>";
     echo "<div class=\"menu\">";
@@ -64,7 +73,7 @@ function drawMenu($mysqlObj) {
     echo "</form>";
 
     DisplayLabel("Write your text here!");
-    DisplayTextbox("textarea", "body", 500, "Start writing here");
+    DisplayTextbox("textarea", $body, 500, "Start writing here");
 }
 
 //save and open file functions
@@ -129,17 +138,38 @@ function openFile() {
     return $body;
 }
 
+function findTextInFile($sourceText, $targetString)
+{
+    $outputString = ("String " . $targetString . " was not found.");
+    $foundString = ($targetString . " was found at position ");
+    if (isset($_POST['caseSensitive']))
+        $pos = strpos($sourceText, $targetString);
+    else
+        $pos = stripos($sourceText, $targetString);
+    if($pos !== false)
+    $outputString = $foundString . ($pos + 1);
+    return $outputString;
+}
 
 
 //main
-//$mysqlObj = CreateConnectionObject();
+$mysqlObj = CreateConnectionObject();
 $TableName = "fontNames";
 //write headers with all student first and last names
-WriteHeaders("PHP group Project", "By: Sam Marrello, Emma Lavigne, Fidy Fiaferana, Jordan Lo Monico, Logan Finches, & Drew Murray");
-//if (isset($_POST['f_Save']))saveFile($p));
-// else if openFile();
-//  else if findButton, findTextInFile($p1, $p2);
-//else drawMenu();
+WriteHeaders("PHP group Project", "By: Sam Marrello, Emma Lavigne, Fidy Fiaferana,
+                Jordan Do Canto, Logan Finches, & Drew Murray");
+if (isset($_POST['save'])) saveFile($body);
+    else if (isset($_POST['open']))
+    {
+        $body = openFile();
+        
+    }
+        else if (isset($_POST['find']))
+        {    
+            $foundOutput = findTextInFile($p1, $p2);
+            echo $foundOutput;
+        }
+            else drawMenu($mysqlObj);
 if (isset($mysqlObj)) $mysqlObj->close();
 //write footers
 WriteFooters();
